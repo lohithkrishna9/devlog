@@ -14,10 +14,17 @@
         </div>
         <div id="password">
             <label for="Password-input">Password:</label>
-            <input type="text" id="Password-input" name="username" placeholder="Enter your password">
+            <input type="password" id="Password-input" name="username" placeholder="Enter your password">
 
-        </div id="buttons">
-        <div id="buttons"><button> Signin </button>
+        </div>
+        <script>
+            async function SignIn(){
+                var username = document.getElementById("username-input").value;
+                var password = document.getElementById("Password-input").value;
+                await axios.post('/localhost/8081/login',{username:username,password:password})
+            }
+        </script>
+        <div id="buttons"><button onclick="Signin()"> Signin </button>
         <button onclick="window.location.href='signup.html'"> Signup </button></div>
         
 
