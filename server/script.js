@@ -5,15 +5,8 @@ const jwt     = require('jsonwebtoken');
 const bcrypt  = require('bcrypt');
 const path = require('path');
 const cors = require('cors');
-app.use(express.static(path.join(__dirname, 'client')));
+const User = require('./models/User');
 
-app.get('/signup', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/pages/signup.html'));
-});
-
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/pages/login.html'));
-});
 
 
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -23,6 +16,16 @@ const PORT = process.env.PORT || 8081;
 const app  = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../client')));
+app.get('/', (req, res) => {res.sendFile(path.join(__dirname, '../client/pages/login.html'));
+})
+app.get('/signup', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/pages/signup.html'));
+});
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/pages/login.html'));
+});
 
 const users = []; 
 
